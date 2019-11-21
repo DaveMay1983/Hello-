@@ -1,62 +1,32 @@
-
-print("Exercise 7.1")
-
-"""
-
-name = input("Enter the file name: ")
-fil = open(name)
-
-for i in fil:
-    i = i.upper()
-    print(i)
-
-"""
-
-print("Exercise 7.2")
+# This code calculates the average spam confidence in email box.
 
 
-"""
-name = input("Enter the file name: ")
-fil = open(name)
+filename = input("Enter the file name: ")             # user enters the file name
+fileopen = open(filename)                             # opens the file in python
 
-con = 0
-tot = 0
+count = 0                                             # set the count variable, number of spam confidence
+total = 0                                             # set the total variable, amount of all spam confidence   
 
-for i in fil:
-    i = i.rstrip()
-    if i.startswith("X-DSPAM-Confidence:"):
-        pos = i.find(":")
-        n = float(i[pos+2:])
-        con += 1
-        tot += n
+for i in fileopen:                                    # loop through file, iterate each line (i)
+    i = i.rstrip()                                    # right strip the line to remove whitespaces
+    if i.startswith("X-DSPAM-Confidence:"):           # check if the line starts with X-DPSAM, only these lines may contain spam confidence information
+        pos = i.find(":")                             # find the : possition, after which digits for confidence value come 
+        n = float(i[pos+2:])                          # cut and convert digits(which are string type in file) to float type 
+        count += 1                                    # count every spam confidence in the loop
+        total += n                                    # add every spam confidence value to total variable 
 
-ave = tot/con
-print("The average spam confidence is ", ave)
-
-"""
+average = total/count                                 # calculate average spam confidence by deviding total and count variables 
+print("The average spam confidence is: ", average)    # print out the result 
 
 
 
-print("Exercise 7.3")
 
 
-name = input("Enter the file name: ")
 
-try: 
-   fil = open(name)
-except:
-   if name == "na na boo boo":
-      print("NA NA BOO BOO TO YOU - You have been punk'd!")
-   else:
-      print("File cannot be opened: ", name)
-   quit() 
 
-count = 0
 
-for i in fil:
-   count += 1
 
-print("There are ", count, " lines in the file")
+
 
 
 
